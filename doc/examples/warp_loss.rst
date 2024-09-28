@@ -17,7 +17,7 @@ the form of the k-OS WARP loss, also implemented in LightFM.
 
 Like the BPR model, WARP deals with (user, positive item, negative item)
 triplets. Unlike BPR, the negative items in the triplet are not chosen
-by random sampling: they are chosen from among those negatie items which
+by random sampling: they are chosen from among those negative items which
 would violate the desired item ranking given the state of the model.
 This approximates a form of active learning where the model selects
 those triplets that it cannot currently rank correctly.
@@ -156,12 +156,12 @@ What about model fitting speed?
 
 WARP is slower than BPR for all epochs. Interestingly, however, it gets
 slower with additional epochs; every subsequent epoch takes more time.
-This is because of WARP's adaptive samling of negatives: the closer the
+This is because of WARP's adaptive sampling of negatives: the closer the
 model fits the training data, the more times it needs to sample in order
 to find rank-violating examples, leading to longer fitting times.
 
 For this reason, LightFM exposes the ``max_sampled`` hyperparameter that
-limits the number of attemps WARP will carry out to find a negative.
+limits the number of attempts WARP will carry out to find a negative.
 Setting it to a low value and repeating the run shows that the run time
 actually decreases with every epoch: this is because no updates happen
 when a violating example cannot be found in the specified number of
